@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">LKNotes</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="notes">Notes</string>
+    <string name="add_note_button">Add note Button</string>
+    <string name="google_icon">Google icon</string>
+    <string name="login">Login</string>
+    <string name="with_google">with Google</string>
+    <string name="error_process_failed">Error !! Process failed</string>
+    <string name="back_button">Back Button</string>
+    <string name="add_a_note">ADD A NOTE</string>
+    <string name="save_button">Save Button</string>
+    <string name="add_your_note_here">Add your note here..</string>
+    <string name="title">Title</string>
+    <string name="update_note">UPDATE NOTE</string>
+</resources>

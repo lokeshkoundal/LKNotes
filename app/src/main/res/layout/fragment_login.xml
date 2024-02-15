@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".LoginFragment"
+    android:background="#CD2582">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:fontFamily="monospace"
+        android:text="@string/login"
+        android:textColor="@color/white"
+        android:textSize="80sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="110dp"
+        android:fontFamily="monospace"
+        android:text="@string/with_google"
+        android:textColor="@color/white"
+        android:textSize="50sp"
+        android:textStyle="bold" />
+
+    <androidx.cardview.widget.CardView
+        android:layout_marginTop="220dp"
+        android:layout_width="match_parent"
+        android:layout_height="2000dp"
+        android:background="@drawable/upper_round_corners"
+        app:cardCornerRadius="30dp"
+        android:backgroundTint="@color/cardview_dark_background">
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="150dp"
+            android:layout_marginTop="60dp"
+            android:contentDescription="@string/google_icon"
+            android:src="@drawable/google"
+            tools:ignore="ImageContrastCheck" />
+
+
+
+        <com.google.android.gms.common.SignInButton
+            android:id="@+id/googleBtn"
+            android:layout_marginTop="220dp"
+            android:layout_marginStart="55dp"
+            android:layout_width="300dp"
+            android:layout_height="?attr/actionBarSize"/>
+
+        <TextView
+            android:id="@+id/error_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="50sp"
+            android:textColor="@color/white"
+            android:layout_marginTop="400dp"
+            android:layout_marginStart="120dp"/>
+
+
+
+    </androidx.cardview.widget.CardView>
+
+
+</RelativeLayout>
