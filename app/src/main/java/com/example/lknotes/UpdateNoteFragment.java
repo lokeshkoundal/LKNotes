@@ -1,8 +1,12 @@
 package com.example.lknotes;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,10 +18,9 @@ import android.widget.Toast;
 public class UpdateNoteFragment extends Fragment {
 
     EditText editTextTitle,editTextNote;
-    ImageButton saveUpdateBtn,updateBackBtn;
+    ImageButton saveUpdateBtn,updateDeleteBtn;
 
-    String title,note;
-    int id;
+    String title,note,id;
 
 
     public UpdateNoteFragment() {}
@@ -32,14 +35,28 @@ public class UpdateNoteFragment extends Fragment {
         editTextTitle = view.findViewById(R.id.updateTextTitle);
         editTextNote = view.findViewById(R.id.updateTextNote);
         saveUpdateBtn = view.findViewById(R.id.updateNoteButton);
-        updateBackBtn = view.findViewById(R.id.updateBackBtn);
+        updateDeleteBtn = view.findViewById(R.id.updateDeleteBtn);
+
 
         getBundleData();
 
-        updateBackBtn.setOnClickListener(new View.OnClickListener() {
+
+        saveUpdateBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                   NotesDataBase dataBase = new NotesDataBase(getContext());
+                    String updatedTitle = editTextTitle.getText().toString();
+                    String updatedNote = editTextNote.getText().toString();
 
+                    dataBase.updateNote(id,updatedTitle,updatedNote);
+                }
+
+        });
+
+        updateDeleteBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                confirmDialog();
             }
         });
 
@@ -53,7 +70,7 @@ public class UpdateNoteFragment extends Fragment {
         if(bundle != null) {
             title = bundle.getString("TITLE");
             note = bundle.getString("NOTE");
-            id = bundle.getInt("ID");
+            id = bundle.getString("ID");
 
             editTextTitle.setText(title);
             editTextNote.setText(note);
@@ -62,5 +79,33 @@ public class UpdateNoteFragment extends Fragment {
             Toast.makeText(getContext(),"No data",Toast.LENGTH_SHORT).show();
         }
 
+    }
+
+    void confirmDialog(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setTitle("Delete this note?");
+        builder.setMessage("Are you sure you want to delete this Note? ");
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                NotesDataBase dataBase = new NotesDataBase(getContext());
+                dataBase.deleteNote(id);
+
+                FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.container, new MainFragment());
+                fragmentTransaction.commit();
+
+
+
+            }
+        });
+
+        builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+            }
+        });
+        builder.create().show();
     }
 }

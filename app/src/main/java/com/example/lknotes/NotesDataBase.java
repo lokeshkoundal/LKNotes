@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 import android.widget.Toast;
 
 public class NotesDataBase extends SQLiteOpenHelper {
@@ -30,7 +31,7 @@ public class NotesDataBase extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         loadUID();
 
-        db.execSQL("CREATE TABLE " + Table_Name + " (" +
+        db.execSQL("CREATE TABLE IF NOT EXISTS " + Table_Name + " (" +
                 NOTE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 NOTE_TITLE + " TEXT, " +
                 NOTE_DATA + " TEXT)");
@@ -45,27 +46,37 @@ public class NotesDataBase extends SQLiteOpenHelper {
     }
 
     void saveNote(String title,String data){
-        loadUID();
-        SQLiteDatabase database = this.getWritableDatabase();
-        ContentValues contentValues = new ContentValues();
+           loadUID();
 
-        contentValues.put(NOTE_TITLE,title);
-        contentValues.put(NOTE_DATA,data);
+            SQLiteDatabase database = this.getWritableDatabase();
+            ContentValues contentValues = new ContentValues();
 
-       long result =  database.insert(Table_Name,NOTE_TITLE,contentValues);
-       if(result == -1){
-           Toast.makeText(context,"Failed to save !!",Toast.LENGTH_SHORT).show();
-       }
-       else{
-           Toast.makeText(context,"Note Saved!!",Toast.LENGTH_SHORT).show();
-       }
+            contentValues.put(NOTE_TITLE, title);
+            contentValues.put(NOTE_DATA, data);
 
-
+            long result = database.insert(Table_Name, NOTE_TITLE, contentValues);
+            if (result == -1) {
+                Toast.makeText(context, "Failed to save !!", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(context, "Note Saved!!", Toast.LENGTH_SHORT).show();
+            }
     }
+
+
     Cursor readAllData(){
         loadUID();
-        String query = "SELECT * FROM " + Table_Name;
+
+        SQLiteDatabase databasew = this.getWritableDatabase();  // Explicitly open the database
+        databasew.execSQL("CREATE TABLE IF NOT EXISTS " + Table_Name + " (" +
+                NOTE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                NOTE_TITLE + " TEXT, " +
+                NOTE_DATA + " TEXT)");
+
         SQLiteDatabase database = this.getReadableDatabase();
+
+        String query = "SELECT * FROM " + Table_Name;
+
+
         Cursor cursor = null;
         if(database!=null){
            cursor = database.rawQuery(query,null);
@@ -73,9 +84,42 @@ public class NotesDataBase extends SQLiteOpenHelper {
         return cursor;
     }
 
-    public void updateContact(){
+    public void updateNote(String id , String title, String note){
+        SQLiteDatabase database = getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put(NOTE_TITLE,title);
+        contentValues.put(NOTE_DATA,note);
+
+        database.beginTransaction();
+        long result = database.update(Table_Name,contentValues,  "Note_ID ="+id,null);
+        database.setTransactionSuccessful();
+        database.endTransaction();
+
+        Log.d("Update Result", "Rows affected: " + result); //debugging
+
+       if(result==-1){
+           Toast.makeText(context,"Failed to update",Toast.LENGTH_SHORT).show();
+       }
+       else{
+           Toast.makeText(context,"Successfully updated",Toast.LENGTH_SHORT).show();
+       }
 
     }
+
+    void deleteNote(String id){
+        SQLiteDatabase database = getWritableDatabase();
+        long result = database.delete(Table_Name,"Note_ID ="+id,null);
+        if(result==-1){
+            Toast.makeText(context,"Couldn't Delete",Toast.LENGTH_SHORT).show();
+        }
+        else{
+            Toast.makeText(context,"Note Deleted",Toast.LENGTH_SHORT).show();
+        }
+
+
+    }
+
 
     void loadUID(){
         SharedPreferences loggedInUser = context.getSharedPreferences("LoggedInUser",MODE_PRIVATE);

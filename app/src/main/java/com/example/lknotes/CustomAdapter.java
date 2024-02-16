@@ -66,6 +66,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
                 //Bundle Passing
                 Bundle bundle = new Bundle();
                 bundle.putString("ID",String.valueOf(NoteID.get(position)));
+             //   bundle.putInt("ID", (int) NoteID.get(position));
                 bundle.putString("TITLE",String.valueOf(NoteTitle.get(position)));
                 bundle.putString("NOTE",String.valueOf(Note.get(position)));
 

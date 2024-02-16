@@ -17,11 +17,11 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageButton
-            android:id="@+id/updateBackBtn"
+            android:id="@+id/updateDeleteBtn"
             android:layout_width="55dp"
             android:layout_height="?android:attr/actionBarSize"
             android:contentDescription="@string/back_button"
-            android:src="@drawable/back_icon"
+            android:src="@drawable/delete_icon"
             tools:ignore="RedundantDescriptionCheck" />
 
         <TextView
@@ -68,7 +68,7 @@
         android:textSize="25sp"
         app:layout_constraintTop_toBottomOf="@+id/toolbar2"
         tools:ignore="SpeakableTextPresentCheck"
-        android:hint="Title.."
+        android:hint="@string/titleUpdate"
         android:textColorHint="#555D65"/>
 
     <ScrollView
@@ -89,7 +89,7 @@
             android:textColorHint="#555D65"
             android:textSize="22sp"
             tools:ignore="SpeakableTextPresentCheck"
-            android:hint="Note.."/>
+            android:hint="@string/noteUpdate"/>
 
     </ScrollView>
 

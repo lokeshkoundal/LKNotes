@@ -31,6 +31,18 @@
         android:layout_marginTop="20dp"
         android:padding="10dp">
 
+        <TextView
+            android:id="@+id/NoNotesTv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/no_notes_available"
+            android:gravity="center"
+            android:textSize="30sp"
+            android:visibility="gone"
+            android:textColor="@color/grey"/>
+
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler"
             android:layout_width="match_parent"
@@ -55,6 +67,20 @@
         android:contentDescription="@string/add_note_button"
         android:src="@drawable/add_icon"
         tools:ignore="RedundantDescriptionCheck" />
+
+    <Button
+        android:id="@+id/SignOutBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="25dp"
+        android:backgroundTint="@color/white"
+        android:text="@string/sign_out"
+        android:textColor="#F60000"
+        android:textStyle="bold" />
 
 
 </RelativeLayout>

@@ -13,4 +13,8 @@
     <string name="add_your_note_here">Add your note here..</string>
     <string name="title">Title</string>
     <string name="update_note">UPDATE NOTE</string>
+    <string name="no_notes_available">No Notes Available</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="titleUpdate">Title..</string>
+    <string name="noteUpdate">Note..</string>
 </resources>
