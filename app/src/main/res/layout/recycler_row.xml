@@ -9,6 +9,7 @@
     app:cardUseCompatPadding="true"
     app:cardCornerRadius="7dp"
     android:padding="4dp"
+    android:id="@+id/NoteCardView"
     android:backgroundTint="@color/greyy">
 
     <RelativeLayout
@@ -34,8 +35,7 @@
         android:textSize="15sp"
         android:layout_below="@+id/recycler_TitleTv"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:textColor="#DCD4D4"
+        android:textColor="#ECE4E4"
         android:padding="10dp"
         />
     </RelativeLayout>

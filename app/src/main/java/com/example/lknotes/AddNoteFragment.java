@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 public class AddNoteFragment extends Fragment {
 
@@ -49,7 +50,10 @@ public class AddNoteFragment extends Fragment {
             @Override
             public void onClick(View v) {
                try(NotesDataBase dataBase = new NotesDataBase(requireContext())){
-                dataBase.saveNote(titleEditText.getText().toString().trim(),noteEditText.getText().toString().trim());
+                   if(titleEditText.getText().toString().equals("") && noteEditText.getText().toString().equals(""))
+                       Toast.makeText(getContext(),"insert your note",Toast.LENGTH_SHORT).show();
+                   else
+                        dataBase.saveNote(titleEditText.getText().toString().trim(),noteEditText.getText().toString().trim());
             }}
         });
 

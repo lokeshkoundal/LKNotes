@@ -53,6 +53,7 @@ public class MainFragment extends Fragment {
                 FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.container, new AddNoteFragment());
+                fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
             }
         });

@@ -2,12 +2,18 @@ package com.example.lknotes;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -27,11 +33,16 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
         TextView TitleView,NoteView;
+        CardView NoteCardView;
+        final Context CONTEXT;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             TitleView= itemView.findViewById(R.id.recycler_TitleTv);
             NoteView= itemView.findViewById(R.id.recycler_NoteTv);
+            NoteCardView = itemView.findViewById(R.id.NoteCardView);
+            CONTEXT = itemView.getContext();
+
         }
     }
 
@@ -49,11 +60,33 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
         holder.TitleView.setText(String.valueOf(NoteTitle.get(position)));
         holder.NoteView.setText(String.valueOf(Note.get(position)));
 
+        holder.NoteCardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Bundle Passing
+                Bundle bundle = new Bundle();
+                bundle.putString("ID",String.valueOf(NoteID.get(position)));
+                bundle.putString("TITLE",String.valueOf(NoteTitle.get(position)));
+                bundle.putString("NOTE",String.valueOf(Note.get(position)));
+
+                Fragment updateNoteFragment = new UpdateNoteFragment();
+                updateNoteFragment.setArguments(bundle);
+
+                FragmentManager fragmentManager = ((AppCompatActivity) holder.CONTEXT).getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.container, updateNoteFragment);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+
+            }
+        });
+
     }
 
     @Override
     public int getItemCount() {
         return NoteID.size();
     }
+
 
 }

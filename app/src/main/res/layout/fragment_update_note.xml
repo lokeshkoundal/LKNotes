@@ -60,17 +60,19 @@
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/updateTextTitle"
         android:layout_width="match_parent"
-        android:padding="10dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:maxLength="64"
-        android:textColorHint="#FFAABBCC"
+        android:padding="10dp"
+        android:textColor="@color/white"
         android:textSize="25sp"
         app:layout_constraintTop_toBottomOf="@+id/toolbar2"
-        android:textColor="@color/white"/>
+        tools:ignore="SpeakableTextPresentCheck"
+        android:hint="Title.."
+        android:textColorHint="#555D65"/>
 
     <ScrollView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
@@ -84,8 +86,10 @@
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:textColor="@color/white"
-            android:textColorHint="#FFAABBCC"
-            android:textSize="22sp" />
+            android:textColorHint="#555D65"
+            android:textSize="22sp"
+            tools:ignore="SpeakableTextPresentCheck"
+            android:hint="Note.."/>
 
     </ScrollView>
 

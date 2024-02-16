@@ -6,6 +6,7 @@ import androidx.fragment.app.FragmentTransaction;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -35,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         },2000);
 }
 
-    void loadFrag(Fragment FragmentContext,boolean flag){
+       void loadFrag(Fragment FragmentContext,boolean flag){
 
 
         FragmentManager fragmentManager = getSupportFragmentManager();
