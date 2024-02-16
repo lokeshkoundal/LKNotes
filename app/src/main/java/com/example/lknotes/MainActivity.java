@@ -6,7 +6,6 @@ import androidx.fragment.app.FragmentTransaction;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 
 public class MainActivity extends AppCompatActivity {
 
