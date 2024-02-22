@@ -49,6 +49,7 @@ public class UpdateNoteFragment extends Fragment {
                     String updatedNote = editTextNote.getText().toString();
 
                     dataBase.updateNote(id,updatedTitle,updatedNote);
+                    changeToMainFragment();
                 }
 
         });
@@ -59,8 +60,6 @@ public class UpdateNoteFragment extends Fragment {
                 confirmDialog();
             }
         });
-
-
         return view;
     }
     void getBundleData(){
@@ -90,14 +89,7 @@ public class UpdateNoteFragment extends Fragment {
             public void onClick(DialogInterface dialog, int which) {
                 NotesDataBase dataBase = new NotesDataBase(getContext());
                 dataBase.deleteNote(id);
-
-                FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.container, new MainFragment());
-                fragmentTransaction.commit();
-
-
-
+                changeToMainFragment();
             }
         });
 
@@ -107,5 +99,11 @@ public class UpdateNoteFragment extends Fragment {
             }
         });
         builder.create().show();
+    }
+    void changeToMainFragment(){
+        FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.container, new MainFragment());
+        fragmentTransaction.commit();
     }
 }
