@@ -39,10 +39,7 @@ public class AddNoteFragment extends Fragment {
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.container, new MainFragment());
-                fragmentTransaction.commit();
+               changeFragment();
             }
         });
 
@@ -52,11 +49,19 @@ public class AddNoteFragment extends Fragment {
                try(NotesDataBase dataBase = new NotesDataBase(requireContext())){
                    if(titleEditText.getText().toString().equals("") && noteEditText.getText().toString().equals(""))
                        Toast.makeText(getContext(),"insert your note",Toast.LENGTH_SHORT).show();
-                   else
-                        dataBase.saveNote(titleEditText.getText().toString().trim(),noteEditText.getText().toString().trim());
+                   else {
+                       dataBase.saveNote(titleEditText.getText().toString().trim(), noteEditText.getText().toString().trim());
+                       changeFragment();
+                   }
             }}
         });
 
         return  view;
+    }
+    void changeFragment(){
+        FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.container, new MainFragment());
+        fragmentTransaction.commit();
     }
 }
