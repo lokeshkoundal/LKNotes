@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainFragment"
+    android:background="@drawable/splash_bg"
+    >
+
+
+   <androidx.appcompat.widget.Toolbar
+       android:id="@+id/toolbar"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content">
+
+       <TextView
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:text="@string/notes"
+           android:textAlignment="center"
+           android:textSize="50sp"
+           android:fontFamily="cursive"
+           android:textStyle="bold"
+           android:textColor="@color/black"/>
+
+   </androidx.appcompat.widget.Toolbar>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="700dp"
+        android:layout_below="@+id/toolbar"
+        android:layout_marginTop="5dp"
+        android:padding="10dp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/emplyNotesPic"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="150dp"
+            android:alpha="0.8"
+            android:src="@drawable/empty_notes"
+            android:visibility="gone"/>
+
+
+        <TextView
+            android:id="@+id/NoNotesTv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="420dp"
+            android:gravity="center"
+            android:text="@string/its_quite_here"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:visibility="gone"
+            android:fontFamily="@font/acme"/>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/arrowImg"
+            android:layout_width="150dp"
+            android:layout_height="220dp"
+            android:layout_marginStart="180dp"
+            android:rotation="-60"
+            android:layout_below="@+id/NoNotesTv"
+            android:visibility="gone"
+            android:src="@drawable/arrow" />
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+
+
+
+    </RelativeLayout>
+
+    <ImageButton
+        android:id="@+id/addNoteBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="25dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="55dp"
+        android:background="@drawable/shape_round"
+        android:contentDescription="@string/add_note_button"
+        android:src="@drawable/add_icon"
+        tools:ignore="RedundantDescriptionCheck"
+        android:layout_centerHorizontal="true"/>
+
+    <Button
+        android:id="@+id/SignOutBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="25dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="25dp"
+        android:textSize="20sp"
+        android:fontFamily="monospace"
+        android:backgroundTint="@color/white"
+        android:text="@string/sign_out"
+        android:textColor="#F60000"
+        android:textStyle="bold" />
+
+
+</RelativeLayout>
