@@ -15,7 +15,6 @@ import android.widget.Toast;
 public class AddNoteFragment extends Fragment {
 
 
-//    Button backButton;
     Button saveButton;
 
     EditText titleEditText;
